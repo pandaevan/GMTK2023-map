@@ -758,6 +758,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3237840768816678857, guid: c24751d87a1cb5d4c893cf2be3642620, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237840768816678857, guid: c24751d87a1cb5d4c893cf2be3642620, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237840768816678857, guid: c24751d87a1cb5d4c893cf2be3642620, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3938159880807969833, guid: c24751d87a1cb5d4c893cf2be3642620, type: 3}
       propertyPath: m_Name
       value: Knight
@@ -830,6 +842,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 8128637311304296133}
+    - target: {fileID: 6345230374251000190, guid: 8044ebecd7726204b84b58f717eeeb1d, type: 3}
+      propertyPath: radius
+      value: 1.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6345230374251000190, guid: 8044ebecd7726204b84b58f717eeeb1d, type: 3}
+      propertyPath: endReachedDistance
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8680749693153638412, guid: 8044ebecd7726204b84b58f717eeeb1d, type: 3}
       propertyPath: m_RootOrder
       value: 3
