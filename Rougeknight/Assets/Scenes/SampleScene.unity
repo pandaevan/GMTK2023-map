@@ -778,6 +778,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statsdegrade: {fileID: 4602332028911669222}
   rb: {fileID: 5394894611045076792}
+  Position: {fileID: 6289308282662238798}
+  Control: {fileID: 8128637311304296134}
   speed: 1
 --- !u!114 &4602332028911669222
 MonoBehaviour:
