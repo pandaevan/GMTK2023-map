@@ -56,6 +56,10 @@ public class KnightMovement : MonoBehaviour
             Position.flipX = false;
             Control.SetBool("IsRunning", true);
         }
+        else if (Ymove > 0 || Ymove < 0)
+        {
+            Control.SetBool("IsRunning", true);
+        }
         else
         {
             Control.SetBool("IsRunning",false);
