@@ -5,24 +5,19 @@ using TMPro;
 
 public class statsdegrade : MonoBehaviour
 {
+    public KnightMovement KnightMovement;
     public int BaseSPD;
     public int BaseATK;
     public int BaseHP;
     public int SPD;
     public int ATK;
     public int HP;
-    public TextMeshProUGUI THP;
-    public TextMeshProUGUI TATK;
-    public TextMeshProUGUI TSPD;
     public int statdown;
     public int statresettimer;
     public int lowerby;
     // Start is called before the first frame update
     void Start()
     {
-        THP.text = BaseHP.ToString("F2");
-        TATK.text = BaseATK.ToString("F2");
-        TSPD.text = BaseSPD.ToString("F2");
         HP =  BaseHP;
         ATK = BaseATK;
         SPD = BaseSPD;
@@ -37,9 +32,6 @@ public class statsdegrade : MonoBehaviour
         BaseHP = HP;
         BaseATK = ATK;
         BaseSPD = SPD;
-        THP.text = BaseHP.ToString("F2");
-        TATK.text = BaseATK.ToString("F2");
-        TSPD.text = BaseSPD.ToString("F2");
         if(ATK <= 15 && SPD <= 15 && HP <= 15)
         {
             StopCoroutine(Debuff());
@@ -51,7 +43,7 @@ public class statsdegrade : MonoBehaviour
         {
             
             statdown = Random.Range(1,4);
-            statresettimer = Random.Range(3, 5);
+            statresettimer = Random.Range(30, 60);
             lowerby = Random.Range(1,15);
             if(HP <= 15 && statdown == 1)
             {

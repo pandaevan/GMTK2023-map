@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tile_Sheet_5
+  m_Name: Tile_Sheet_8
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 2106130542, guid: 6a2ee3f36a24cdd48b27a49a220c3a9f, type: 3}
+  m_Sprite: {fileID: 320302239, guid: 6a2ee3f36a24cdd48b27a49a220c3a9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

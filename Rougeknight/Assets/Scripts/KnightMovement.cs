@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-public class NewBehaviourScript : MonoBehaviour
+public class KnightMovement : MonoBehaviour
 {
+    public statsdegrade statsdegrade;
     private Vector2 direction;
     [SerializeField] Rigidbody2D rb;
 
@@ -23,6 +24,11 @@ public class NewBehaviourScript : MonoBehaviour
     private void Update()
     {
         InputsProcess();
+        speed = statsdegrade.SPD/5;
+        if(speed == 0)
+        {
+            speed = 1;
+        }
     }
 
     //Called a set amount per an update
