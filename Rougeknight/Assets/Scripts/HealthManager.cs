@@ -22,10 +22,16 @@ public class HealthManager : MonoBehaviour
     void FixedUpdate()
     {
         slider.value = currenthealth;
+        slider.maxValue = maxhealth;
+        if(currenthealth>= maxhealth)
+        {
+            currenthealth = maxhealth;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
     }
 }

@@ -7,6 +7,7 @@ using TMPro;
 public class HPcount : MonoBehaviour
 {
     public Slider slide;
+    public HealthManager helath;
     public TextMeshProUGUI tmp;
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,6 @@ public class HPcount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tmp.text = (slide.value) + ("/") + (slide.maxValue);
+        tmp.text = (slide.value) + ("/") + (helath.maxhealth);
     }
 }
