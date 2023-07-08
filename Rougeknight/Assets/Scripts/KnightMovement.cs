@@ -12,6 +12,10 @@ public class KnightMovement : MonoBehaviour
     private Vector2 direction;
     [SerializeField] Rigidbody2D rb;
 
+    [Header("AnimationStuff")]
+    [SerializeField] private SpriteRenderer Position;
+    [SerializeField] private Animator Control;
+
     [Header("Movement")][SerializeField] float speed;
 
     // Start is called before the first frame update
@@ -41,6 +45,21 @@ public class KnightMovement : MonoBehaviour
     {
         float Xmove = Input.GetAxisRaw("Horizontal");
         float Ymove = Input.GetAxisRaw("Vertical");
+
+        if (Xmove > 0)
+        {
+            Position.flipX = true;
+            Control.SetBool("IsRunning", true);
+        }
+        else if (Xmove < 0)
+        {
+            Position.flipX = false;
+            Control.SetBool("IsRunning", true);
+        }
+        else
+        {
+            Control.SetBool("IsRunning",false);
+        }
 
         direction = new Vector2(Xmove, Ymove).normalized;
     }
