@@ -18,6 +18,8 @@ public class KnightMovement : MonoBehaviour
 
     [Header("Movement")][SerializeField] float speed;
 
+    private bool switchd;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,19 +52,39 @@ public class KnightMovement : MonoBehaviour
         {
             Position.flipX = true;
             Control.SetBool("IsRunning", true);
+            switchd = true;
         }
         else if (Xmove < 0)
         {
             Position.flipX = false;
             Control.SetBool("IsRunning", true);
+            switchd = false;
         }
         else if (Ymove > 0 || Ymove < 0)
         {
+            if (switchd == false)
+            {
+                Position.flipX = false;
+            }
+            else
+            {
+                Position.flipX = true;
+            } //I fucking hate this but not much I can do about it.
+
             Control.SetBool("IsRunning", true);
         }
         else
         {
             Control.SetBool("IsRunning",false);
+            if (switchd == true)
+            {
+                Position.flipX = false;
+            }
+            else
+            {
+                Position.flipX = true;
+            }
+            //painful animation stuff because i'm too tired to flip the god damn scripts
         }
 
         direction = new Vector2(Xmove, Ymove).normalized;
