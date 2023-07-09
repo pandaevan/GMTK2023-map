@@ -18,6 +18,6 @@ public class HPcount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tmp.text = (slide.value) + ("/") + (helath.maxhealth);
+        tmp.text = (slide.value) + ("/") + (helath.maxHealth);
     }
 }

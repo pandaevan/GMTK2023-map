@@ -18,7 +18,15 @@ public class KnightMovement : MonoBehaviour
 
     [Header("Movement")][SerializeField] float speed;
 
+    //Audio
+    [Header("Audio")][SerializeField] AudioSource audioSource;
+    //SFX
+    [Header("Audio")][SerializeField] AudioClip walking;
+
+
+
     private bool switchd;
+    bool isRunning;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +43,7 @@ public class KnightMovement : MonoBehaviour
         {
             speed = 1;
         }
+        DoAudio();
     }
 
     //Called a set amount per an update
@@ -52,12 +61,14 @@ public class KnightMovement : MonoBehaviour
         {
             Position.flipX = true;
             Control.SetBool("IsRunning", true);
+            isRunning = true;
             switchd = true;
         }
         else if (Xmove < 0)
         {
             Position.flipX = false;
             Control.SetBool("IsRunning", true);
+            isRunning = true;
             switchd = false;
         }
         else if (Ymove > 0 || Ymove < 0)
@@ -72,10 +83,12 @@ public class KnightMovement : MonoBehaviour
             } //I fucking hate this but not much I can do about it.
 
             Control.SetBool("IsRunning", true);
+            isRunning = false;
         }
         else
         {
             Control.SetBool("IsRunning",false);
+            isRunning = false;
             if (switchd == true)
             {
                 Position.flipX = false;
@@ -93,4 +106,20 @@ public class KnightMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
     }
+
+    void DoAudio()
+    {
+        if (isRunning == true)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(walking);
+            }
+        }
+        else
+        {
+            audioSource.Stop();
+        }
+    }
+
 }
