@@ -15,7 +15,7 @@ private bool spawned = false;
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn" , 0.1f);
+        Invoke("Spawn" , 0.4f);
         Invoke("rescans",6f);
     }
 
@@ -64,8 +64,8 @@ rand = Random.Range(0, templates.RightRooms.Length);
             if (other.GetComponent<spawnpoints>().spawned == false && spawned == false)
             {
             Instantiate(templates.closedrooms, transform.position, Quaternion.identity);
-            Destroy(gameObject);
             }
+            Destroy(gameObject);
             spawned = true;
         }
     }

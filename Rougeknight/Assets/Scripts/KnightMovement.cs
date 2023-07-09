@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class KnightMovement : MonoBehaviour
 {
@@ -50,6 +51,10 @@ public class KnightMovement : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void InputsProcess() 

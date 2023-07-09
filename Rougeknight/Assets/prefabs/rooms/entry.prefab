@@ -2869,6 +2869,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5351405712532301217}
   - component: {fileID: 1089082193498767911}
+  - component: {fileID: -3393033499147881226}
   m_Layer: 0
   m_Name: entry
   m_TagString: spawnpoint
@@ -2913,6 +2914,18 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &-3393033499147881226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8338214562034218906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564f5352237d72244b57caac5473d071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8891681600576092559
 GameObject:
   m_ObjectHideFlags: 0
