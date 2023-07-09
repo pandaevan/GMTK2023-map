@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.UI;
 public class statsdegrade : MonoBehaviour
 {
     public KnightMovement KnightMovement;
@@ -15,12 +15,13 @@ public class statsdegrade : MonoBehaviour
     public int statdown;
     public int statresettimer;
     public int lowerby;
+    [SerializeField] Slider slider;
     // Start is called before the first frame update
     void Start()
     {
-        HP =  BaseHP;
         ATK = BaseATK;
         SPD = BaseSPD;
+        slider.maxValue = BaseHP;
     }
   void Awake() 
     {
@@ -29,14 +30,19 @@ public class statsdegrade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         slider.value = HP;
+        slider.maxValue = BaseHP;
+        if(HP >= BaseHP)
+        {
+            HP = BaseHP;
+        }
         if(SPD <= 24)
         {
             SPD=25;
         }
-        BaseHP = HP;
         BaseATK = ATK;
         BaseSPD = SPD;
-        if(ATK <= 15 && SPD <= 25 && HP <= 15)
+        if(ATK <= 15 && SPD <= 25 && BaseHP <= 15)
         {
             StopCoroutine(Debuff());
         }
@@ -49,7 +55,7 @@ public class statsdegrade : MonoBehaviour
             statdown = Random.Range(1,4);
             statresettimer = Random.Range(30, 60);
             lowerby = Random.Range(1,15);
-            if(HP <= 15 && statdown == 1)
+            if(BaseHP <= 15 && statdown == 1)
             {
                 statdown = Random.Range(2,4);
                 Debug.Log("1");
@@ -65,9 +71,9 @@ public class statsdegrade : MonoBehaviour
                 Debug.Log("3");
             }
             yield return new WaitForSeconds (statresettimer);
-            if(statdown == 1 && HP>= 15)
+            if(statdown == 1 && BaseHP>= 15)
             {
-                HP -= lowerby;
+                BaseHP -= lowerby;
                 Debug.Log("4");
             }
             if(statdown == 2 && ATK>= 15)

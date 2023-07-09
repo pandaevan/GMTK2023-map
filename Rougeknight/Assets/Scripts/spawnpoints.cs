@@ -12,11 +12,11 @@ public class spawnpoints : MonoBehaviour
 private RoomTemplates templates;
 private int rand;
 private bool spawned = false;
-private bool rescan = false;
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn" , 0.1f);
+        Invoke("Spawn" , 0.4f);
+        Invoke("rescans",6f);
     }
 
     // Update is called once per frame
@@ -51,12 +51,7 @@ rand = Random.Range(0, templates.RightRooms.Length);
     }
         void Update() 
         {
-            if(rescan == false && spawned == true)
-            {
-            Invoke("rescans",1f);
-            rescan = true;
-            }
-            
+
         }
         void rescans()
         {
@@ -69,8 +64,8 @@ rand = Random.Range(0, templates.RightRooms.Length);
             if (other.GetComponent<spawnpoints>().spawned == false && spawned == false)
             {
             Instantiate(templates.closedrooms, transform.position, Quaternion.identity);
-            Destroy(gameObject);
             }
+            Destroy(gameObject);
             spawned = true;
         }
     }
