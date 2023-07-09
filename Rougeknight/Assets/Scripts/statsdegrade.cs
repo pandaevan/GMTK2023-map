@@ -29,10 +29,14 @@ public class statsdegrade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SPD <= 24)
+        {
+            SPD=25;
+        }
         BaseHP = HP;
         BaseATK = ATK;
         BaseSPD = SPD;
-        if(ATK <= 15 && SPD <= 15 && HP <= 15)
+        if(ATK <= 15 && SPD <= 25 && HP <= 15)
         {
             StopCoroutine(Debuff());
         }
@@ -55,7 +59,7 @@ public class statsdegrade : MonoBehaviour
                 statdown = Random.Range(1,4);
                 Debug.Log("2");
             }
-            if(SPD <= 15 && statdown == 3)
+            if(SPD <= 25 && statdown == 3)
             {
                 statdown = Random.Range(2,3);
                 Debug.Log("3");

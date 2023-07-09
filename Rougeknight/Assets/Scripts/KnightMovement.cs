@@ -28,7 +28,7 @@ public class KnightMovement : MonoBehaviour
     private void Update()
     {
         InputsProcess();
-        speed = statsdegrade.SPD/5;
+        speed = statsdegrade.SPD * 3;
         if(speed == 0)
         {
             speed = 1;
@@ -69,6 +69,6 @@ public class KnightMovement : MonoBehaviour
     }
     void Movement() 
     {
-        rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
+        rb.velocity = new Vector2(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime);
     }
 }
