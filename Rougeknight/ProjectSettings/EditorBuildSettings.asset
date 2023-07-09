@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/roomlayout.unity
     guid: 0cc75c15ac10778419a4132ca953502f
   - enabled: 1
+    path: Assets/Scenes/Main Menu 1.unity
+    guid: c32ce03931bbde14ca84b68b9ef5e4fb
+  - enabled: 1
+    path: Assets/Scenes/Settings Menu 1.unity
+    guid: 565a8c4d6bd43634f8ab8229d2727258
+  - enabled: 1
     path: Assets/Scenes/Settings Menu.unity
     guid: 01489db8c0248dd419f1c5bc2f078608
   m_configObjects: {}

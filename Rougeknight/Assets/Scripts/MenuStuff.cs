@@ -8,7 +8,7 @@ public class MenuStuff : MonoBehaviour
     //Starts the game
     public void Play()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     //Quits the game
@@ -19,11 +19,15 @@ public class MenuStuff : MonoBehaviour
 
     public void LoadMainMenu() 
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 
     public void LoadSettingsMenu() 
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
+    }
+        public void Help() 
+    {
+        SceneManager.LoadScene(3);
     }
 }
