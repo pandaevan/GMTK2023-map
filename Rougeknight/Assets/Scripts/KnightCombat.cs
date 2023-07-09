@@ -1,167 +1,101 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
+using UnityEngine;
+using UnityEngine;
 
 public class KnightCombat : MonoBehaviour
 {
-    //Use mouse for aim; direction player faces
-    //Playerinput: mouse click
-    //Player mouse indicates slash?
+    [Header("Animation")]
+    [SerializeField] private SpriteRenderer position;
+    [SerializeField] private Animator control;
 
-    private Transform empty;
-    public Transform knight;
-
-    //Note: GetComponent is get gameObjects from other objects in the scene (i.e. script is not assigned to)
-    Vector2 direction;
 
     //For attack's timing
     private float timeBtwAttack;
     public float startTimeBetweenAttack;
 
     //For attack's range
-    public float attackRange;
+    public float range;
 
     //For modifications to attack
     public int damage;
 
-    public float offset = 0.5f;
-    // public LayerMask;
+    public float delay = 0.3f;
+    private bool attackBlocked;
 
+    public Transform circleOrigin;
+    public float radius;
 
+    public bool IsAttacking { get; private set; }
+
+    public void ResetIsAttacking()
+    {
+        IsAttacking = false;
+    }
     //Offset of weapon
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
-    //Create an empty, throw in front of player
-    //Raycast?
-    //Compare tags
+
+    private Vector2 pointerInput, movementInput;
+    private void Update()
+    {
+        Vector2 pointerPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        Vector2 direction = (pointerPosition - (Vector2)transform.position).normalized;
+
+
+    }
+
 
     void FixedUpdate()
     {
-        InputsProcess();
-
-        // RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(direction), attackRange);
-
-
-        //Is key pressed?
-        if (Input.GetMouseButton(0) == true)
+        if (Input.GetMouseButtonDown(0) == true)
         {
-            //Did they just attack less than a second ago?
-            if (timeBtwAttack <= 0)
-            {
-                timeBtwAttack = startTimeBetweenAttack;
-
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(transform.position, attackRange);
-
-                int i;
-                for (i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    Debug.Log(enemiesToDamage[i].gameObject.name);
-                    if (enemiesToDamage[i].tag == "Enemy")
-                    {
-                        Debug.Log("hit");
-                    }
-                }
-            }
-            else
-            {
-                timeBtwAttack -= Time.deltaTime;
-            }
+            Attack();
         }
-
-        /* Old code: if (hit.collider.gameObject.CompareTag("Enemy")) 
-        {
-            hit.collider.gameObject.GetComponent<SlimeCombat>().TakeDamage(damage);
-        }
-        else 
-        {
-
-        } */
-
-        // Debug.DrawRay(transform.position, transform.TransformDirection(direction * attackRange), Color.white);
     }
 
-    void InputsProcess()
+    public void Attack()
     {
-        float Xmove = Input.GetAxisRaw("Horizontal");
-        float Ymove = Input.GetAxisRaw("Vertical");
+        if (attackBlocked)
+            return;
 
-        if (Xmove > 0)
+        control.SetTrigger("Attack");
+        IsAttacking = true;
+        attackBlocked = true;
+        StartCoroutine(DelayAttack());
+    }
+
+    private IEnumerator DelayAttack()
+    {
+        yield return new WaitForSeconds(delay);
+        attackBlocked = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Vector3 position = circleOrigin == null ? Vector3.zero : circleOrigin.position;
+        Gizmos.DrawWireSphere(position, radius);
+    }
+
+    private Vector2 GetPointerInput()
+    {
+        //Possible problem code
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        mousePos.z = Camera.main.nearClipPlane;
+        return Camera.main.ScreenToWorldPoint(mousePos);
+    }
+
+    public void DetectColliders()
+    {
+        foreach (Collider2D collider in Physics2D.OverlapCircleAll(circleOrigin.position, radius))
         {
-            direction = Vector2.right;
-            transform.position = new Vector2(knight.transform.position.x + 0.5f, knight.transform.position.y);
-        }
-        else if (Xmove < 0)
-        {
-            direction = Vector2.left;
-            transform.position = new Vector2(knight.transform.position.x - 0.5f, knight.transform.position.y);
-        }
-        else if (Ymove > 0)
-        {
-            direction = Vector2.up;
-            transform.position = new Vector2(knight.transform.position.x, knight.transform.position.y + 0.5f);
-        }
-        else if (Ymove < 0)
-        {
-            direction = Vector2.down;
-            transform.position = new Vector2(knight.transform.position.x, knight.transform.position.y - 0.5f);
+            Debug.Log(collider.tag);
         }
     }
 }
-
-/*
- *   Ray ray = new Ray(transform.position, Input.mousePosition.normalized);
-        transform.position = knight.position;
-
-        Vector2 vec = new Vector2(Input.mousePosition.x - transform.position.x, Input.mousePosition.y - transform.position.y);
-
-        ;
-        Debug.DrawRay(transform.position, vec.normalized, Color.magenta);
-
-        void CheckForColliders()
-        { }
- * 
- */
-
-// Update is called once per frame
-/*  void Update()
-  {
-      attackPos.position = transform.position;
-
-
-      if (Input.GetMouseButtonDown(0) == true) 
-      {
-          Debug.Log("Mouseclick");
-
-          if (timeBtwAttack <= 0) 
-          {
-              timeBtwAttack = startTimeBetweenAttack;
-
-              Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange);
-
-              int i;
-              for (i = 0; i < enemiesToDamage.Length; i++)
-              {
-                  Debug.Log(enemiesToDamage[i].gameObject.name);
-              }
-
-              for (i = 0; i < enemiesToDamage.Length; i++) 
-              {
-                  if (enemiesToDamage[i].tag == "Enemy") 
-                  {
-
-                  }
-                  Debug.Log("HIT EPIC HIT");
-              }
-          } 
-          else 
-          {
-              timeBtwAttack -= Time.deltaTime;
-          }
-      }
-
-  } */
