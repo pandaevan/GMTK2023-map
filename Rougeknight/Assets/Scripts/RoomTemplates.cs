@@ -8,4 +8,6 @@ public GameObject[] BottomRooms;
 public GameObject[] TopRooms;
 public GameObject[] LeftRooms;
 public GameObject[] RightRooms;
+
+public GameObject closedrooms;
 }

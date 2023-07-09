@@ -12,6 +12,7 @@ public class spawnpoints : MonoBehaviour
 private RoomTemplates templates;
 private int rand;
 private bool spawned = false;
+private bool rescan = false;
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
@@ -48,11 +49,29 @@ rand = Random.Range(0, templates.RightRooms.Length);
         }
 
     }
+        void Update() 
+        {
+            if(rescan == false && spawned == true)
+            {
+            Invoke("rescans",1f);
+            rescan = true;
+            }
+            
+        }
+        void rescans()
+        {
+            AstarPath.active.Scan();
+        }
     void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.CompareTag("spawnpoint"))
         {
+            if (other.GetComponent<spawnpoints>().spawned == false && spawned == false)
+            {
+            Instantiate(templates.closedrooms, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            }
+            spawned = true;
         }
     }
 }
