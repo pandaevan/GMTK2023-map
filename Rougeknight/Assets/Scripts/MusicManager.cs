@@ -25,7 +25,7 @@ public class MusicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (scene.buildIndex)
+        switch (scene.buildIndex + 1)
         {
             //menu
             case 0:

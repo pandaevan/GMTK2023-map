@@ -1,11 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
@@ -53,7 +49,7 @@ public class KnightCombat : MonoBehaviour
 
 
         //Is key pressed?
-        if (Input.GetKeyDown(KeyCode.Space) == true)
+        if (Input.GetMouseButton(0) == true)
         {
             //Did they just attack less than a second ago?
             if (timeBtwAttack <= 0)
@@ -66,14 +62,9 @@ public class KnightCombat : MonoBehaviour
                 for (i = 0; i < enemiesToDamage.Length; i++)
                 {
                     Debug.Log(enemiesToDamage[i].gameObject.name);
-                }
-
-                for (i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    Debug.Log(enemiesToDamage[i].gameObject.name);
                     if (enemiesToDamage[i].tag == "Enemy")
                     {
-                        Debug.Log("HIT EPIC HIT");
+                        Debug.Log("hit");
                     }
                 }
             }
@@ -83,7 +74,7 @@ public class KnightCombat : MonoBehaviour
             }
         }
 
-        /*if (hit.collider.gameObject.CompareTag("Enemy")) 
+        /* Old code: if (hit.collider.gameObject.CompareTag("Enemy")) 
         {
             hit.collider.gameObject.GetComponent<SlimeCombat>().TakeDamage(damage);
         }
